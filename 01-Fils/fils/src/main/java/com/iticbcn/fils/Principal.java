@@ -26,11 +26,11 @@ public class Principal {
         Fil filJuan2 = new Fil("Juan", 2);
         Fil filPepe2 = new Fil("Pepe", 2);
 
-        filJuan2.start();
         filPepe2.start();
+        filJuan2.start();
         try {
-            filJuan2.join();
             filPepe2.join();
+            filJuan2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

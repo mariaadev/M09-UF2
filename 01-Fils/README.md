@@ -68,15 +68,6 @@ Termina el fil Pepe
 **Exemple de sortida:**
 ```plaintext
 Termina thread main
-Juan 1
-Juan 2
-Juan 3
-Juan 4
-Juan 5
-Juan 6
-Juan 7
-Juan 8
-Juan 9
 Pepe 1
 Pepe 2
 Pepe 3
@@ -86,6 +77,15 @@ Pepe 6
 Pepe 7
 Pepe 8
 Pepe 9
+Juan 1
+Juan 2
+Juan 3
+Juan 4
+Juan 5
+Juan 6
+Juan 7
+Juan 8
+Juan 9
 Termina el fil Juan
 Termina el fil Pepe
 ```
