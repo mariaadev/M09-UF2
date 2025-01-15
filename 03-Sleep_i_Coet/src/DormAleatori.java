@@ -15,15 +15,13 @@ public class DormAleatori extends Thread {
         for (int i = 0; i < 10; i++) {
             try {
                 /*Interval aleatori entre 50 i 1000 ms*/ 
-                int interval = 50 + random.nextInt(951);
+                int interval = 50 + random.nextInt(1000);
                 
                 //Temps total des de la creació fins a la execució
                 long tempsTotal = System.currentTimeMillis() - instant;
                 
                 System.out.println(getName() + "(" + i + ") a dormir " + interval + "ms total " + tempsTotal);
                 
-                /*Intervals d'un en 1 */
-                tempsTotal = Math.max(tempsTotal, 1);
 
                 Thread.sleep(interval);
 

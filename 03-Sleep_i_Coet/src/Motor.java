@@ -6,8 +6,9 @@ public class Motor extends Thread {
     private int potenciaObjectiu = 0;
     private boolean enFuncionament = true;
 
-    public void setPotencia(int p) {
+    public  synchronized void setPotencia(int p) {
         this.potenciaObjectiu = p;
+        notify();
     }
 
     @Override
@@ -15,6 +16,18 @@ public class Motor extends Thread {
         Random random = new Random();
 
         while (enFuncionament) {
+            synchronized (this) {
+                while (potenciaActual == potenciaObjectiu) {
+                    try {
+                        wait();
+                        if (potenciaActual == 0 && potenciaObjectiu == 0) break;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                 
+                }
+            }
+
             try {
                 // Ajusta la potència actual cap a la potència objectiu
                 if (potenciaActual < potenciaObjectiu) {
