@@ -20,10 +20,10 @@ public class Compte {
         this.saldo = saldo;
     }
 
-    public void ingresarSaldo(float canvi) {
+    public synchronized void ingresarSaldo(float canvi) {
         saldo += canvi;
     }
-    public void retirarSaldo(float canvi) {
+    public synchronized void retirarSaldo(float canvi) {
         saldo -= canvi;
     }
 }

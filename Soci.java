@@ -18,9 +18,9 @@ public class Soci extends Thread {
 
     @Override
     public void run() {
-        
-        for (int any = 1; any <= MAX_ANYS; any++) {
 
+        for (int any = 1; any <= MAX_ANYS; any++) {
+            
             for (int mes = 1; mes <= 12; mes++) {
                 if (mes % 2 == 0) {
                     compte.ingresarSaldo(APORTACIO);
