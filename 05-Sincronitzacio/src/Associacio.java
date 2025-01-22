@@ -1,4 +1,3 @@
-
 public class Associacio {
     private final int NUM_SOCIS = 1000;
     private final Soci[] SOCIS;
