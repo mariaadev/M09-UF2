@@ -27,9 +27,9 @@ public class Forquilla {
     public boolean agafar() {
         if (!enUs) {
             enUs = true;
-            return enUs;
+            return true;
         }
-        return enUs;
+        return false;
     }
 
     public void deixar() {

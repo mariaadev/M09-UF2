@@ -2,7 +2,6 @@
 public class Taula {
     private final Filosof[] filosofs;
     private final Forquilla[] forquilles;
-    private int tornsDeMenjar = 0;
 
     public Taula(int numFilosofs) {
         filosofs = new Filosof[numFilosofs];
@@ -32,36 +31,21 @@ public class Taula {
         }
     }
 
-    public boolean esTornDeMenjar() {
-        tornsDeMenjar++;
-        return tornsDeMenjar == filosofs.length;
-    }
 
-    public void resetTorns() {
-        tornsDeMenjar = 0; 
-    }
-
-    public boolean totsHanMenjat() {
-        for (Filosof f : filosofs) {
-            if (!f.haMenjat()) {
-                return false;
-            }
-        }
-        return true;
-    }
     public static void main(String[] args) {
         Taula taula = new Taula(4);
         taula.showTaula();
         taula.cridarATaula();
 
-        long iniciApp = System.currentTimeMillis();
-        long tempsLimit = 120000; /*limit execució app per a que no sigui infinit */
-
-        while (System.currentTimeMillis() - iniciApp < tempsLimit) {
-            if (taula.totsHanMenjat()) {
-                taula.resetTorns(); 
-            }
+        try {
+            Thread.sleep(60000); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+        System.out.println("S'ha acabat el sopar.");
+        /*Finalitzar el programa i els fils */
+        System.exit(0);
     }
 }
 

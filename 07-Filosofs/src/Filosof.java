@@ -5,8 +5,6 @@ public class Filosof extends Thread {
     private final Forquilla forquillaDreta;
     private final Random random;
     private int gana; 
-    private int comptadorMenjars;
-    private int espera; 
 
     public Filosof(String nom, Forquilla esquerra, Forquilla dreta) {
         super(nom);
@@ -14,13 +12,12 @@ public class Filosof extends Thread {
         this.forquillaDreta = dreta;
         this.random = new Random();
         this.gana = 0;
-        this.comptadorMenjars = 0;
-        this.espera = 0;
+    
     }
 
     public void menjar() {
         System.out.println("Filòsof: " + getName() + " intenta menjar.");
-        while (comptadorMenjars == 0) {
+        while (true) {
             if (forquillaEsquerra.agafar()) {
                 System.out.println("Filòsof: " + getName() + " agafa la forquilla esquerra " + forquillaEsquerra.getNumForquilla());
                 if (forquillaDreta.agafar()) {
@@ -28,7 +25,6 @@ public class Filosof extends Thread {
                     try {
                         /*Entre 1 i 2 segons */
                         Thread.sleep(1000 + random.nextInt(1001));
-                        comptadorMenjars++; 
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -37,13 +33,12 @@ public class Filosof extends Thread {
                   
                     forquillaDreta.deixar();
                     forquillaEsquerra.deixar();
-                    break;
+                    return;
                 } else {
                     /*forquilla esquerra en ús, llavors s'ha d'esperar */
                     System.out.println("Filòsof: " + getName() + " deixa la forquilla esquerra (" + forquillaEsquerra.getNumForquilla() + ") i espera (dreta ocupada)");
                     forquillaEsquerra.deixar();
                     gana++;
-                    espera++;
                     System.out.println("Filòsof: " + getName() + " gana=" + gana);
                 }
             }
@@ -66,9 +61,7 @@ public class Filosof extends Thread {
         }
     }
 
-    public boolean haMenjat() {
-        return comptadorMenjars > 0;
-    }
+
     @Override
     public void run() {
         while (true) {
@@ -77,7 +70,5 @@ public class Filosof extends Thread {
         }
     }
 
-    public int getEspera() {
-        return espera; 
-    }
+
 }
