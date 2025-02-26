@@ -61,11 +61,10 @@ public class Filosof extends Thread {
         }
     }
 
-
     public int getNumFilosof(){
         return numFilosof;
     }
-
+    
     public void agafarForquilles() {
         agafarForquillaEsquerra();
         agafarForquillaDreta();
