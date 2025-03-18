@@ -1,9 +1,35 @@
 class Barber extends Thread {
     private final String nom;
-    private final Barberia barberia;
+    
 
-    public Barber(String nom, Barberia barberia) {
+    public Barber(String nom) {
         this.nom = nom;
-        this.barberia = barberia;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            synchronized (Barberia.getInstancia().condBarber) {
+                while (Barberia.getInstancia().esSalaEsperaBuida()) {
+                    System.out.println("Ningú en espera");
+                    System.out.println("Barber " + nom + " dormint");
+                    try {
+                        Barberia.getInstancia().condBarber.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            Client client;
+            synchronized (Barberia.getInstancia().condBarber) {
+                client = Barberia.getInstancia().seguentClient();
+            }
+
+            if (client != null) {
+                System.out.println("Li toca al client " + client.getNom());
+                client.tallarseElCabell();
+            }
+        }
     }
 }

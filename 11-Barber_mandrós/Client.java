@@ -1,3 +1,5 @@
+import java.util.Random;
+
 class Client {
     private final String nom;
 
@@ -6,7 +8,12 @@ class Client {
     }
 
     public void tallarseElCabell() {
-        System.out.println(nom + " s'està tallant el cabell.");
+       System.out.println("Tallant cabell a " + nom);
+        try {
+            Thread.sleep(900 + new Random().nextInt(100));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getNom() {
